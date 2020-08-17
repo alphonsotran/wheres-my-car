@@ -1,12 +1,15 @@
 {
   "extends": [
-    "eslint: recommended",
-    "react/recommended",
+    "eslint:recommended",
     "prettier",
     "prettier/react",
-    "@typescript-eslint/recommended"
+    "prettier/@typescript-eslint",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
