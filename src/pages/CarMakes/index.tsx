@@ -2,9 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useFetch from '../../components/useFetch';
+import FormField from '../../components/FormField';
+import SelectionList from '../../components/SelectionList';
 import { Nullable } from '../../utils/types';
-import { RenderLoading, RenderError } from '../../helpers/boundaries';
-import { Container, MakeContainer } from './styles';
+import {
+  NoResults,
+  NotAvailable,
+  RenderError,
+  RenderLoading,
+} from '../../components/Fallback';
+import { InputWrapper, Label } from './styles';
 
 const CarMakes: React.FC = () => {
   const history = useHistory();
@@ -42,34 +49,38 @@ const CarMakes: React.FC = () => {
   if (isLoading) return <RenderLoading />;
 
   if (carMakesData && carMakesData.length === 0 && !isLoading) {
-    return <p>Not available in stock</p>;
+    return <NotAvailable />;
   }
 
   return (
-    <Container>
-      <label htmlFor="filter">
-        Filter
-        <input
+    <SelectionList>
+      <InputWrapper>
+        <FormField
           type="text"
           id="filter"
           name="filterInput"
           value={input}
           onChange={handleChange}
+          label="Filter"
+          placeholder="Type to narrow down"
         />
-      </label>
+      </InputWrapper>
+
+      <Label>Choose the make</Label>
 
       {carMakesList && carMakesList.length > 0 ? (
         carMakesList.map((make) => {
           return (
-            <MakeContainer key={`${make}`} onClick={() => navigate(make)}>
-              {make}
-            </MakeContainer>
+            <SelectionList.Item
+              key={`${make}`}
+              value={make}
+              onClick={() => navigate(make)}></SelectionList.Item>
           );
         })
       ) : (
-        <p>No results</p>
+        <NoResults />
       )}
-    </Container>
+    </SelectionList>
   );
 };
 
