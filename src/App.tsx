@@ -15,7 +15,12 @@ const App: React.FC = () => {
   return (
     <>
       <TitleWrapper>
-        <Title>Where's My Car? 🚘</Title>
+        <Title>
+          Where's My Car?{' '}
+          <span role="img" aria-label="car emoji">
+            🚘
+          </span>
+        </Title>
       </TitleWrapper>
       <Router>
         <ErrorBoundary>
