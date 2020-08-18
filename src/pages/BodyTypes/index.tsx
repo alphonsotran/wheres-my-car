@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import SelectionList from '../../components/SelectionList';
+import Button from '../../components/Button';
 import { sortByType } from '../../utils/filter';
-import { Container, MakeContainer } from './styles';
+import { Label, ButtonWrapper } from './styles';
 
 const BodyTypes: React.FC = () => {
   const [bodyTypesDictionary, setBodyTypesDictionary] = useState({});
@@ -21,19 +23,27 @@ const BodyTypes: React.FC = () => {
     });
   };
 
+  const goBack = () => history.goBack();
+
   return (
-    <Container>
+    <SelectionList>
+      <Label>Choose a body type</Label>
+
       {bodyTypesDictionary &&
         Object.keys(bodyTypesDictionary).map((bodyType) => {
           return (
-            <MakeContainer
+            <SelectionList.Item
               key={`${bodyType}`}
-              onClick={() => navigate(bodyType)}>
-              {bodyType}
-            </MakeContainer>
+              value={bodyType}
+              onClick={() => navigate(bodyType)}
+            />
           );
         })}
-    </Container>
+
+      <ButtonWrapper>
+        <Button type="button" onClick={goBack} label="Go Back" />
+      </ButtonWrapper>
+    </SelectionList>
   );
 };
 
