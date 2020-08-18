@@ -6,6 +6,10 @@ export const SelectListItem = styled.div`
   border-radius: 4px;
   cursor: pointer;
 
+  & > p {
+    color: ${(props) => props.theme.colors.textColor};
+  }
+
   &:hover {
     background-color: #f5f8fa80;
   }

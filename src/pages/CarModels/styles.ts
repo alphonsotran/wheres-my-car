@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const Label = styled.h4`
-  margin-bottom: 1rem;
+  padding: 1rem 0;
+  color: ${(props) => props.theme.colors.textColor};
 `;
 
 export const ButtonWrapper = styled.div`
-  margin: 1rem 0;
+  padding: 1rem 0;
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Label = styled.h4`
-  margin-bottom: 1rem;
+  padding: 1rem 0;
 `;
 
 export const ButtonWrapper = styled.div`

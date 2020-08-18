@@ -10,6 +10,7 @@ export const Item = styled.li`
   padding: 1rem;
   flex: 1;
   cursor: pointer;
+  max-height: 35vh;
 
   &:hover {
     background-color: #f5f8fa80;
