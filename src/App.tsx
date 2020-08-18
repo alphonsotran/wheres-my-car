@@ -9,12 +9,14 @@ import EngineCapacity from './pages/EngineCapacity';
 import Vehicles from './pages/Vehicles';
 import VehicleDetail from './pages/VehicleDetail';
 
-import { Title } from './styles';
+import { Title, TitleWrapper } from './styles';
 
 const App: React.FC = () => {
   return (
     <>
-      <Title>Where's My Car?</Title>
+      <TitleWrapper>
+        <Title>Where's My Car? 🚘</Title>
+      </TitleWrapper>
       <Router>
         <ErrorBoundary>
           <Switch>
