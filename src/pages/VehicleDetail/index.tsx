@@ -1,7 +1,15 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
-import { Container, Title, Subtitle } from './styles';
+import Button from '../../components/Button';
+import {
+  Container,
+  Title,
+  Subtitle,
+  HeaderWrapper,
+  ButtonWrapper,
+} from './styles';
+import ListItem from '../../components/List/ListItem';
 
 const VehicleDetail: React.FC = () => {
   const history = useHistory();
@@ -9,27 +17,20 @@ const VehicleDetail: React.FC = () => {
     state: { vehicle },
   } = useLocation();
 
-  const {
-    model,
-    make,
-    bodyType,
-    fuelType,
-    enginePowerPS,
-    enginePowerKW,
-    engineCapacity,
-  } = vehicle;
+  const goHome = () => history.push('/');
 
   return (
     <Container>
-      <Title>You've found your car!</Title>
-      <Subtitle>It took a while, but here it is (we hope)</Subtitle>
-      <p>{make}</p>
-      <p>{model}</p>
-      <p>{bodyType}</p>
-      <p>{enginePowerPS}</p>
-      <p>{enginePowerKW}</p>
-      <p>{fuelType}</p>
-      <p>{engineCapacity}</p>
+      <HeaderWrapper>
+        <Title>You've found your car!</Title>
+        <Subtitle>It took a while, but here it is (we hope 🤞)</Subtitle>
+      </HeaderWrapper>
+
+      <ListItem {...vehicle} />
+
+      <ButtonWrapper>
+        <Button type="button" onClick={goHome} label="Look again" />
+      </ButtonWrapper>
     </Container>
   );
 };

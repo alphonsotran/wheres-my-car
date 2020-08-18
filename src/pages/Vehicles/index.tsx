@@ -2,7 +2,8 @@ import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
 import List from '../../components/List';
-import { Container } from './styles';
+import Button from '../../components/Button';
+import { Container, Label, ButtonWrapper } from './styles';
 
 const Vehicles: React.FC = () => {
   const history = useHistory();
@@ -16,8 +17,12 @@ const Vehicles: React.FC = () => {
     });
   };
 
+  const goBack = () => history.goBack();
+
   return (
     <Container>
+      <Label>Choose your vehicle</Label>
+
       <List>
         {vehicles &&
           vehicles.map((vehicle) => {
@@ -30,6 +35,10 @@ const Vehicles: React.FC = () => {
             );
           })}
       </List>
+
+      <ButtonWrapper>
+        <Button type="button" onClick={goBack} label="Go Back" />
+      </ButtonWrapper>
     </Container>
   );
 };

@@ -2,9 +2,15 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useFetch from '../../components/useFetch';
+import SelectionList from '../../components/SelectionList';
+import Button from '../../components/Button';
 import { useQuery } from '../../components/useQuery';
-import { RenderLoading, RenderError } from '../../helpers/boundaries';
-import { Container, MakeContainer } from './styles';
+import {
+  NotAvailable,
+  RenderError,
+  RenderLoading,
+} from '../../components/Fallback';
+import { Label, ButtonWrapper } from './styles';
 
 const CarModels: React.FC = () => {
   const query = useQuery();
@@ -21,25 +27,35 @@ const CarModels: React.FC = () => {
     );
   };
 
+  const goBack = () => history.goBack();
+
   if (error) return <RenderError />;
 
   if (isLoading) return <RenderLoading />;
 
   if (carModels && carModels.length === 0 && !isLoading) {
-    return <p>Not available in stock</p>;
+    return <NotAvailable />;
   }
 
   return (
-    <Container>
+    <SelectionList>
+      <Label>Choose your model</Label>
+
       {carModels &&
         carModels.map((model) => {
           return (
-            <MakeContainer key={`${model}`} onClick={() => navigate(model)}>
-              {model}
-            </MakeContainer>
+            <SelectionList.Item
+              key={`${model}`}
+              value={model}
+              onClick={() => navigate(model)}
+            />
           );
         })}
-    </Container>
+
+      <ButtonWrapper>
+        <Button type="button" onClick={goBack} label="Go Back" />
+      </ButtonWrapper>
+    </SelectionList>
   );
 };
 

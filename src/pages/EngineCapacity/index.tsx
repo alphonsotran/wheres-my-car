@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import SelectionList from '../../components/SelectionList';
+import Button from '../../components/Button';
 import { sortByType } from '../../utils/filter';
-import { Container, MakeContainer } from './styles';
+import { Label, ButtonWrapper } from './styles';
 
 const EngineCapacity: React.FC = () => {
   const [engineCapacityDictionary, setEngineCapacityDictionary] = useState({});
@@ -15,6 +17,8 @@ const EngineCapacity: React.FC = () => {
     setEngineCapacityDictionary(sortByType(vehicles, 'engineCapacity'));
   }, [vehicles]);
 
+  const goBack = () => history.goBack();
+
   const navigate = (engineCapacity) => {
     history.push(`/vehicles`, {
       vehicles: engineCapacityDictionary[engineCapacity],
@@ -22,18 +26,23 @@ const EngineCapacity: React.FC = () => {
   };
 
   return (
-    <Container>
+    <SelectionList>
+      <Label>Choose your engine capacity</Label>
+
       {engineCapacityDictionary &&
         Object.keys(engineCapacityDictionary).map((engineCapacity) => {
           return (
-            <MakeContainer
+            <SelectionList.Item
               key={`${engineCapacity}`}
-              onClick={() => navigate(engineCapacity)}>
-              {engineCapacity}
-            </MakeContainer>
+              value={engineCapacity}
+              onClick={() => navigate(engineCapacity)}
+            />
           );
         })}
-    </Container>
+      <ButtonWrapper>
+        <Button type="button" onClick={goBack} label="Go Back" />
+      </ButtonWrapper>
+    </SelectionList>
   );
 };
 

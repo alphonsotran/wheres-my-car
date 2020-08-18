@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useFetch from '../../components/useFetch';
-import { RenderLoading, RenderError } from '../../helpers/boundaries';
+import Button from '../../components/Button';
+import SelectionList from '../../components/SelectionList';
+import {
+  NotAvailable,
+  RenderError,
+  RenderLoading,
+} from '../../components/Fallback';
 import { sortByType } from '../../utils/filter';
 import { useQuery } from '../../components/useQuery';
-import { Container, MakeContainer } from './styles';
+import { Label, ButtonWrapper } from './styles';
 
 const FuelTypes: React.FC = () => {
   const query = useQuery();
@@ -26,27 +32,35 @@ const FuelTypes: React.FC = () => {
     history.push(`/bodytypes`, { fuelType: fuelTypesDictionary[fuelType] });
   };
 
+  const goBack = () => history.goBack();
+
   if (error) return <RenderError />;
 
   if (isLoading) return <RenderLoading />;
 
   if (response && response.length === 0 && !isLoading) {
-    return <p>Not available in stock</p>;
+    return <NotAvailable />;
   }
 
   return (
-    <Container>
+    <SelectionList>
+      <Label>Choose your fuel type</Label>
+
       {fuelTypesDictionary &&
         Object.keys(fuelTypesDictionary).map((fuelType) => {
           return (
-            <MakeContainer
+            <SelectionList.Item
               key={`${fuelType}`}
-              onClick={() => navigate(fuelType)}>
-              {fuelType}
-            </MakeContainer>
+              value={fuelType}
+              onClick={() => navigate(fuelType)}
+            />
           );
         })}
-    </Container>
+
+      <ButtonWrapper>
+        <Button type="button" onClick={goBack} label="Go Back" />
+      </ButtonWrapper>
+    </SelectionList>
   );
 };
 

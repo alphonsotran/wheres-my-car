@@ -15,3 +15,19 @@ export const MakeContainer = styled.div`
     background-color: lightblue;
   }
 `;
+
+export const Label = styled.h4`
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0 25vw;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  margin: 1rem 0;
+
+  @media (min-width: 768px) {
+    padding: 0 25vw;
+  }
+`;
