@@ -22,7 +22,7 @@ const VehicleDetail: React.FC = () => {
   return (
     <Container>
       <HeaderWrapper>
-        <Title>You've found your car!</Title>
+        <Title>You&apos;ve found your car!</Title>
         <Subtitle>
           It took a while, but here it is (we hope{' '}
           <span role="img" aria-label="car emoji">

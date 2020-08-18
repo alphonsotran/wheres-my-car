@@ -23,7 +23,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <TitleWrapper>
         <Title>
-          Where's My Car?{' '}
+          Where&apos;s My Car?{' '}
           <span role="img" aria-label="car emoji">
             🚘
           </span>
