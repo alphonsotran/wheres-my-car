@@ -9,7 +9,7 @@ import {
   HeaderWrapper,
   ButtonWrapper,
 } from './styles';
-import ListItem from '../../components/List/ListItem';
+import VehicleListItem from '../../components/VehicleList/VehicleListItem';
 
 const VehicleDetail: React.FC = () => {
   const history = useHistory();
@@ -23,10 +23,16 @@ const VehicleDetail: React.FC = () => {
     <Container>
       <HeaderWrapper>
         <Title>You've found your car!</Title>
-        <Subtitle>It took a while, but here it is (we hope 🤞)</Subtitle>
+        <Subtitle>
+          It took a while, but here it is (we hope{' '}
+          <span role="img" aria-label="car emoji">
+            🤞
+          </span>
+          )
+        </Subtitle>
       </HeaderWrapper>
 
-      <ListItem {...vehicle} />
+      <VehicleListItem {...vehicle} />
 
       <ButtonWrapper>
         <Button type="button" onClick={goHome} label="Look again" />

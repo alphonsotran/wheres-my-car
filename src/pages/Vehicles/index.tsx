@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
-import List from '../../components/List';
+import VehicleList from '../../components/VehicleList';
 import Button from '../../components/Button';
 import { Container, Label, ButtonWrapper } from './styles';
 
@@ -23,18 +23,18 @@ const Vehicles: React.FC = () => {
     <Container>
       <Label>Choose your vehicle</Label>
 
-      <List>
+      <VehicleList>
         {vehicles &&
           vehicles.map((vehicle) => {
             return (
               <div
                 key={`${Object.values(vehicle)}`}
                 onClick={() => navigate(vehicle)}>
-                <List.Item vehicle={vehicle} />
+                <VehicleList.Item vehicle={vehicle} />
               </div>
             );
           })}
-      </List>
+      </VehicleList>
 
       <ButtonWrapper>
         <Button type="button" onClick={goBack} label="Go Back" />
