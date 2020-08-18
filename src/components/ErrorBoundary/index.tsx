@@ -1,5 +1,6 @@
 import React, { ReactNode, ErrorInfo } from 'react';
-import { Link } from 'react-router-dom';
+
+import { Container, Message, ButtonLink } from './styles';
 
 type IProps = {
   children?: ReactNode;
@@ -23,10 +24,15 @@ class ErrorBoundary extends React.Component<IProps> {
 
     if (this.state.hasError) {
       return (
-        <h1>
-          Oops. Something went wrong. <Link to="/">Click here</Link> to back to
-          the home page.
-        </h1>
+        <Container>
+          <Message>
+            Oops. Something went wrong.{' '}
+            <ButtonLink type="button" onClick={() => window.location.reload()}>
+              Click here
+            </ButtonLink>{' '}
+            to back to the home page.
+          </Message>
+        </Container>
       );
     }
 
