@@ -16,30 +16,24 @@ import darkTheme from './themes/dark';
 import { Title, TitleWrapper } from './styles';
 
 const App: React.FC = () => {
-  const stored = localStorage.getItem('isLight');
-  const [isLight, setLightMode] = useState(stored === 'true' ? true : false);
+  const stored = localStorage.getItem('isDarkMode');
+  const [isDarkMode, setDarkMode] = useState(stored === 'true' ? true : false);
 
   return (
-    <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <TitleWrapper>
         <Title>
           Where's My Car?{' '}
-          <span
-            onClick={() => {
-              setLightMode(!isLight);
-              localStorage.setItem('isLight', `${!isLight}`);
-            }}
-            role="img"
-            aria-label="car emoji">
+          <span role="img" aria-label="car emoji">
             🚘
           </span>
         </Title>
         <Button
           type="button"
-          label="Dark/Night"
+          label={`${isDarkMode ? 'Dark Mode' : 'Light Mode'}`}
           onClick={() => {
-            setLightMode(!isLight);
-            localStorage.setItem('isLight', `${!isLight}`);
+            setDarkMode(!isDarkMode);
+            localStorage.setItem('isDarkMode', `${!isDarkMode}`);
           }}
         />
       </TitleWrapper>
